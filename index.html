@@ -1,11 +1,342 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
+
 <head>
-    <title>Birthday</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>یک سورپرایز برای تو ❤️</title>
+
+    <style>
+.confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.confetti::before,
+.confetti::after {
+    content: "🎉 ✨ 💕 🎊 ❤️ ✨ 🎉 💖";
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    font-size: 25px;
+    word-spacing: 50px;
+    animation: confettiFall 5s linear infinite;
+}
+
+.confetti::after {
+    animation-delay: 2.5s;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: floatHeart 7s linear infinite;
+    opacity: 0;
+}
+
+.hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.hearts span:nth-child(2) {
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.hearts span:nth-child(3) {
+    left: 40%;
+    animation-delay: 4s;
+}
+
+.hearts span:nth-child(4) {
+    left: 60%;
+    animation-delay: 1s;
+}
+
+.hearts span:nth-child(5) {
+    left: 75%;
+    animation-delay: 3s;
+}
+
+.hearts span:nth-child(6) {
+    left: 90%;
+    animation-delay: 5s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-50vh) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffeef3;
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #d6336c;
+            margin-bottom: 40px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: auto;
+            background: #f8b4c4;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #e98da5;
+            transform-origin: top;
+            transition: transform 0.8s;
+            z-index: 3;
+        }
+
+        .letter {
+            position: absolute;
+            background: white;
+            width: 260px;
+            min-height: 160px;
+            left: 20px;
+            top: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            transition: transform 0.8s;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .letter h2 {
+            color: #d6336c;
+        }
+
+        .letter p {
+            line-height: 2;
+            color: #555;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-100px);
+            opacity: 1;
+        }
+
+        .hint {
+            margin-top: 25px;
+            color: #777;
+        }
+  .surprise-content {
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+}
+
+.envelope.open ~ .hint + .surprise-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: contentAppear 1.2s ease forwards;
+}
+
+@keyframes contentAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    60% {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.envelope.open ~ .hint + .surprise-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.photo {
+    width: 250px;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    display: block;
+
+    animation: photoAppear 1.5s ease forwards;
+}
+
+@keyframes photoAppear {
+    0% {
+        opacity: 0;
+        transform: rotate(-8deg) scale(0.7);
+    }
+
+    70% {
+        transform: rotate(3deg) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+</style>
 </head>
 
 <body>
-    <h1>تولدت مبارک ❤️</h1>
+<div class="hearts">
+<div class="confetti"></div>
+
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💗</span>
+    <span>❤️</span>
+    <span>💖</span>
+    <span>💕</span>
+
+</div>
+    <div class="container">
+
+        <h1>یه سورپرایز برات دارم ❤️</h1>
+
+        <div class="envelope" id="envelope">
+
+            <div class="flap"></div>
+
+            <div class="letter">
+                <h2>تولدت مبارک 🎂❤️</h2>
+
+                <p>
+                    امیدوارم امسال برات پر از اتفاق‌های قشنگ،
+                    خنده‌های زیاد و لحظه‌های به‌یادماندنی باشه.
+                </p>
+
+                <p>
+                    ❤️ همیشه شاد باشی ❤️
+                </p>
+            </div>
+
+        </div>
+
+        <div class="hint">
+            روی پاکت بزن 🎁
+        </div>
+<div class="surprise-content">
+
+    <img class="photo" src="couple.jpg" alt="عکس ما">
+
+    <h2>تولدت مبارک ❤️</h2>
+
+    <p>
+        امیدوارم امسال برات پر از اتفاق‌های قشنگ باشه،
+        پر از خنده‌های واقعی و لحظه‌هایی که همیشه یادت بمونه.
+        امیدوارم به همه چیزایی که آرزو داری برسی
+        و همیشه دلت شاد و لبت خندون باشه.
+        تولدت مبارک عزیزم ❤️
+    </p>
+
+    <audio id="birthdaySong" src="birthday.mp3"></audio>
+
+    <button onclick="playMusic()">
+        🎵 پخش آهنگ
+    </button>
+
+</div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById("envelope");
+
+        envelope.addEventListener("click", function () {
+            envelope.classList.toggle("open");
+        });
+function playMusic() {
+    const music = document.getElementById("birthdaySong");
+
+    music.play();
+}
+    </script>
+
 </body>
 
 </html>
